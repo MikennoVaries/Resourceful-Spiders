@@ -1,4 +1,9 @@
 package com.mikenyes.resourcefulspiders.entity.neutral;
 
-public class ResourcefulSpider {
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.MobEntity;
+import net.minecraft.world.World;
+
+public class ResourcefulSpider extends MobEntity {
+
 }
