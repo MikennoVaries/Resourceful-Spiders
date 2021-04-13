@@ -6,7 +6,11 @@ import com.mikenyes.resourcefulspiders.entity.neutral.ResourcefulSpiderEntity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
+import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
+import net.minecraftforge.eventbus.api.Event;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -14,6 +18,15 @@ public class RegistryHandler {
 
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.ENTITIES, ResourcefulSpiders.MOD_ID);
 
+    public static void init() {
+        IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
+        ModItems.ITEMS.register(bus);
+        ENTITY_TYPES.register(bus);
+    }
+
+    public static void addEntityAttributes(EntityAttributeCreationEvent event) {
+        ModEntities.getModSpiders().forEach((s, customBee) -> event.put(customBee.get(), ResourcefulSpiderEntity.createSpiderAttributes(s).build()));
+    }
 
     public static void registerDynamicSpiders() {
         SpiderRegistry.getRegistry().getSpiders().forEach((name, customSpider) -> {

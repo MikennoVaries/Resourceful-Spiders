@@ -7,6 +7,7 @@ import com.mikenyes.resourcefulspiders.registry.SpiderRegistry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
@@ -35,10 +36,20 @@ public class SpiderSetup {
         return resourcePath;
     }
 
+    private static void parseSpider(File file) throws IOException {
+        String name = file.getName();
+        name = name.substring(0, name.indexOf('.'));
+
+        Reader r = Files.newBufferedReader(file.toPath());
+
+        parseSpider(r, name);
+    }
+
     private static void parseSpider(Reader reader, String name) {
         name = name.toLowerCase(Locale.ENGLISH).replace(" ", "_");
         Gson gson = new Gson();
         try {
+            LOGGER.info("Registering spider {}",name);
             CustomSpiderData spider = gson.fromJson(reader, CustomSpiderData.class);
             spider.setName(name);
             SpiderRegistry.getRegistry().registerSpider(name, spider);
@@ -60,9 +71,16 @@ public class SpiderSetup {
     }
 
     private static void addZippedSpider(Path path) {
+
     }
 
-    private static void addSpider(Path path) {
+    private static void addSpider(Path file) {
+        File f = file.toFile();
+        try {
+            parseSpider(f);
+        } catch (IOException e) {
+            LOGGER.error("File not found when parsing spiders");
+        }
     }
 
     public static void setupSpiders() {

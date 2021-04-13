@@ -4,15 +4,10 @@ import java.util.Random;
 import javax.annotation.Nullable;
 
 import com.mikenyes.resourcefulspiders.api.CustomSpiderData;
+import com.mikenyes.resourcefulspiders.registry.SpiderRegistry;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.entity.CreatureAttribute;
-import net.minecraft.entity.EntitySize;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ILivingEntityData;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.Pose;
-import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.HurtByTargetGoal;
@@ -86,8 +81,9 @@ public class ResourcefulSpiderEntity extends MonsterEntity {
 
     }
 
-    public static AttributeModifierMap.MutableAttribute createAttributes() {
-        return MonsterEntity.createMonsterAttributes().add(Attributes.MAX_HEALTH, 16.0D).add(Attributes.MOVEMENT_SPEED, (double)0.3F);
+    public static AttributeModifierMap.MutableAttribute createSpiderAttributes(String key) {
+        CustomSpiderData spiderData = SpiderRegistry.getRegistry().getSpiderData(key);
+        return createMobAttributes().add(Attributes.MAX_HEALTH, spiderData.getBaseHealth()).add(Attributes.MOVEMENT_SPEED, 1.0F).add(Attributes.ATTACK_DAMAGE, spiderData.getBaseDamage()).add(Attributes.FOLLOW_RANGE, 48.0D);
     }
 
     protected SoundEvent getAmbientSound() {

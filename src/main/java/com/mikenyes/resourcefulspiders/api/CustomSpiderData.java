@@ -32,6 +32,10 @@ public class CustomSpiderData {
     private ModelType modelType = ModelType.DEFAULT;
     private ExtraModelType extraModelType = ExtraModelType.NONE;
 
+    // combat stats
+    private int baseHealth = 10;
+    private int baseDamage = 4;
+
     public CustomSpiderData() {
 
     }
@@ -48,5 +52,13 @@ public class CustomSpiderData {
     }
 
     public void setSpawnEggItemRegistryObject(RegistryObject<Item> customSpiderSpawnEgg) {
+    }
+
+    public int getBaseHealth() {
+        return baseHealth;
+    }
+
+    public int getBaseDamage() {
+        return baseDamage;
     }
 }
