@@ -1,5 +1,7 @@
 package com.mikenyes.resourcefulspiders.api;
 
+import com.mikenyes.resourcefulspiders.ResourcefulSpiders;
+import com.mikenyes.resourcefulspiders.lib.SpiderConstants;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.RegistryObject;
@@ -60,5 +62,9 @@ public class CustomSpiderData {
 
     public int getBaseDamage() {
         return baseDamage;
+    }
+
+    public ResourceLocation getBaseTexture() {
+        return ResourceLocation.tryParse(ResourcefulSpiders.MOD_ID + ":" + SpiderConstants.ENTITY_TEXTURES_DIR + baseModelTexture + ".png");
     }
 }
