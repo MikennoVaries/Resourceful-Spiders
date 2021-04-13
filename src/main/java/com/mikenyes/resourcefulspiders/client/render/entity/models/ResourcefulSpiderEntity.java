@@ -6,14 +6,14 @@ import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
-public class ResourcefulSpiderBase extends EntityModel<Entity> {
+public class ResourcefulSpiderEntity extends EntityModel<Entity> {
 	private final ModelRenderer rightlegs;
 	private final ModelRenderer leftlegs;
 	private final ModelRenderer spider;
 	private final int textureWidth;
 	private final int textureHeight;
 
-	public ResourcefulSpiderBase() {
+	public ResourcefulSpiderEntity() {
 		textureWidth = 64;
 		textureHeight = 64;
 
