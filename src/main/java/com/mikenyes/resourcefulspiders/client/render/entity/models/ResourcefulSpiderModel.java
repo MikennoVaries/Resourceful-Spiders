@@ -1,19 +1,21 @@
 package com.mikenyes.resourcefulspiders.client.render.entity.models;
 
+import com.mikenyes.resourcefulspiders.entity.neutral.ResourcefulSpiderEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
+import net.minecraft.client.renderer.entity.model.AgeableModel;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
-public class ResourcefulSpiderEntity extends EntityModel<Entity> {
+public class ResourcefulSpiderModel<T extends ResourcefulSpiderEntity> extends AgeableModel<T> {
 	private final ModelRenderer rightlegs;
 	private final ModelRenderer leftlegs;
 	private final ModelRenderer spider;
 	private final int textureWidth;
 	private final int textureHeight;
 
-	public ResourcefulSpiderEntity() {
+	public ResourcefulSpiderModel() {
 		textureWidth = 64;
 		textureHeight = 64;
 
@@ -40,7 +42,7 @@ public class ResourcefulSpiderEntity extends EntityModel<Entity> {
 	}
 
 	@Override
-	public void setupAnim(Entity p_225597_1_, float p_225597_2_, float p_225597_3_, float p_225597_4_, float p_225597_5_, float p_225597_6_) {
+	public void setupAnim(T p_225597_1_, float p_225597_2_, float p_225597_3_, float p_225597_4_, float p_225597_5_, float p_225597_6_) {
 
 	}
 
@@ -49,6 +51,16 @@ public class ResourcefulSpiderEntity extends EntityModel<Entity> {
 		rightlegs.render(matrixStack, buffer, packedLight, packedOverlay);
 		leftlegs.render(matrixStack, buffer, packedLight, packedOverlay);
 		spider.render(matrixStack, buffer, packedLight, packedOverlay);
+	}
+
+	@Override
+	protected Iterable<ModelRenderer> headParts() {
+		return null;
+	}
+
+	@Override
+	protected Iterable<ModelRenderer> bodyParts() {
+		return null;
 	}
 
 	public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {
