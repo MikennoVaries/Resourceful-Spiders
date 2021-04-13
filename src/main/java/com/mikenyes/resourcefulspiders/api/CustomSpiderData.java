@@ -1,6 +1,10 @@
 package com.mikenyes.resourcefulspiders.api;
 
-public class SpiderData {
+import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.RegistryObject;
+
+public class CustomSpiderData {
 
 
     // custom model data
@@ -28,7 +32,21 @@ public class SpiderData {
     private ModelType modelType = ModelType.DEFAULT;
     private ExtraModelType extraModelType = ExtraModelType.NONE;
 
-    public SpiderData() {
+    public CustomSpiderData() {
 
+    }
+
+    public void setName(String name) {
+
+    }
+
+    public float getSizeModifier() {
+        return 1.0f;
+    }
+
+    public void setEntityTypeRegistryID(ResourceLocation id) {
+    }
+
+    public void setSpawnEggItemRegistryObject(RegistryObject<Item> customSpiderSpawnEgg) {
     }
 }
