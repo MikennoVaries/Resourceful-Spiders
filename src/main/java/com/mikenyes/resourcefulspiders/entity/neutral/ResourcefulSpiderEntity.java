@@ -44,8 +44,11 @@ import net.minecraft.world.World;
 public class ResourcefulSpiderEntity extends MonsterEntity {
     private static final DataParameter<Byte> DATA_FLAGS_ID = EntityDataManager.defineId(ResourcefulSpiderEntity.class, DataSerializers.BYTE);
 
-    public ResourcefulSpiderEntity(EntityType<? extends ResourcefulSpiderEntity> p_i48550_1_, World p_i48550_2_, CustomSpiderData customSpiderData) {
-        super(p_i48550_1_, p_i48550_2_);
+    private CustomSpiderData spiderData;
+
+    public ResourcefulSpiderEntity(EntityType<? extends ResourcefulSpiderEntity> entityType, World world, CustomSpiderData customSpiderData) {
+        super(entityType, world);
+        this.spiderData = customSpiderData;
     }
 
     protected void registerGoals() {
@@ -170,6 +173,10 @@ public class ResourcefulSpiderEntity extends MonsterEntity {
 
     protected float getStandingEyeHeight(Pose p_213348_1_, EntitySize p_213348_2_) {
         return 0.65F;
+    }
+
+    public CustomSpiderData getSpiderData() {
+        return spiderData;
     }
 
     static class AttackGoal extends MeleeAttackGoal {

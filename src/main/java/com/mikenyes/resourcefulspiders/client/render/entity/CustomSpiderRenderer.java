@@ -20,7 +20,7 @@ public class CustomSpiderRenderer extends MobRenderer<ResourcefulSpiderEntity, R
 
     @Override
     @Nonnull
-    public ResourceLocation getTextureLocation(ResourcefulSpiderEntity p_110775_1_) {
+    public ResourceLocation getTextureLocation(@Nonnull ResourcefulSpiderEntity entity) {
         return data.getBaseTexture();
     }
 }
