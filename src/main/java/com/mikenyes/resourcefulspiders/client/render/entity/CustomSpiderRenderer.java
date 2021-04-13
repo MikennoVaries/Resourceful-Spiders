@@ -14,7 +14,7 @@ public class CustomSpiderRenderer extends MobRenderer<ResourcefulSpiderEntity, R
     CustomSpiderData data;
 
     public CustomSpiderRenderer(EntityRendererManager manager, CustomSpiderData data) {
-        super(manager, new ResourcefulSpiderModel(), 0.4f);
+        super(manager, new ResourcefulSpiderModel<>(), 0.4f);
         this.data = data;
     }
 
